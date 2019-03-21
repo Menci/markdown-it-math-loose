@@ -1,12 +1,13 @@
-[![npm](https://img.shields.io/npm/v/markdown-it-math.svg)](https://www.npmjs.com/package/markdown-it-math)
-[![Build Status](https://travis-ci.org/runarberg/markdown-it-math.svg?branch=master)](https://travis-ci.org/runarberg/markdown-it-math)
+[![npm](https://img.shields.io/npm/v/markdown-it-math-loose.svg)](https://www.npmjs.com/package/markdown-it-math-loose)
 
 **Note:** This is a general [markdown-it][markdown-it] math plugin. It
 was originally designed to render [MathML][mathml]. If you intend to
 use [MathJax][mathjax], [markdown-it-mathjax][markdown-it-mathjax]
 might be a better choise.
 
-markdown-it-math
+**Note:** This plugin was forked the origin markdown-it-math because we need to allow spaces before and after the dollar sign, such as `$ a+b $`.
+
+markdown-it-math-loose
 ================
 
 ```md
@@ -29,7 +30,7 @@ Installation
 ------------
 
 ```sh
-npm install markdown-it-math --save
+npm install markdown-it-math-loose --save
 ```
 
 Usage
@@ -37,7 +38,7 @@ Usage
 
 ```javascript
 var md = require('markdown-it')()
-        .use(require('markdown-it-math') [, options]);
+        .use(require('markdown-it-math-loose') [, options]);
 ```
 
 where options can be (with defaults)
@@ -65,7 +66,7 @@ Using comma as a decimal mark
 
 ```javascript
 var md = require('markdown-it')()
-        .use(require('markdown-it-math'), {
+        .use(require('markdown-it-math-loose'), {
             renderingOptions: { decimalMark: ',' }
         });
 
@@ -78,7 +79,7 @@ Using [TeXZilla][texzilla] as renderer
 ```javascript
 var texzilla = require('texzilla');
 var md = require('markdown-it')()
-        .use(require('markdown-it-math'), {
+        .use(require('markdown-it-math-loose'), {
             inlineRenderer: function(str) {
                 return texzilla.toMathMLString(str);
             },

@@ -1,24 +1,17 @@
 {
-  "name": "markdown-it-math",
+  "name": "markdown-it-math-loose",
   "version": "4.1.1",
   "description": "Markdown-it plugin to include math in your document",
   "main": "index.js",
-  "directories": {
-    "test": "test"
-  },
   "scripts": {
     "browserify": "(echo \"/*! ${npm_package_name} ${npm_package_version} ${npm_package_homepage} @license MIT */\"; browserify ./ -s markdownitMath) > dist/markdown-it-math.js",
-    "predist": "npm run test",
     "dist": "rm -fr dist; mkdir dist; npm run browserify; npm run minify",
-    "lint": "eslint index.js lib/",
     "minify": "uglifyjs dist/markdown-it-math.js -b beautify=false,ascii_only=true -c -m --preamble \"/*! ${npm_package_name} ${npm_package_version} ${npm_package_homepage} @license MIT */\" > dist/markdown-it-math.min.js",
-    "prepublish": "npm run dist",
-    "pretest": "npm run lint",
-    "test": "mocha"
+    "prepublish": "npm run dist"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/runarberg/markdown-it-math"
+    "url": "https://github.com/Menci/markdown-it-math-loose"
   },
   "keywords": [
     "markdown-it",
@@ -27,12 +20,12 @@
     "MathML",
     "AsciiMath"
   ],
-  "author": "Rúnar Berg Baugsson Sigríðarson",
+  "author": "Menci <huanghaorui301@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/runarberg/markdown-it-math/issues"
+    "url": "https://github.com/Menci/markdown-it-math-loose/issues"
   },
-  "homepage": "https://github.com/runarberg/markdown-it-math",
+  "homepage": "https://github.com/Menci/markdown-it-math-loose",
   "optionalDependencies": {
     "ascii2mathml": "^0.6.2"
   },
@@ -40,11 +33,9 @@
     "@babel/core": "^7.3.4",
     "babelify": "^10.0.0",
     "browserify": "^16.2.3",
-    "eslint": "^5.14.1",
     "lodash": "^4.17.11",
     "markdown-it": "^8.4.2",
     "markdown-it-testgen": "^0.1.5",
-    "mocha": "^6.0.2",
     "texzilla": "^0.9.9",
     "uglify-js": "^3.4.9"
   }

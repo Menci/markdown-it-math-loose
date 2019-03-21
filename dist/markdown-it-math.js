@@ -1,4 +1,4 @@
-/*! markdown-it-math 4.1.1 https://github.com/runarberg/markdown-it-math @license MIT */
+/*! markdown-it-math-loose 4.1.1 https://github.com/Menci/markdown-it-math-loose @license MIT */
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.markdownitMath = f()}})(function(){var define,module,exports;return (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 'use strict';
 
@@ -1472,44 +1472,17 @@ require('./lib/polyfills');
 
 
 function scanDelims(state, start, delimLength) {
-  var pos = start, lastChar, nextChar, count, can_open, can_close,
-      isLastWhiteSpace, isNextWhiteSpace,
-      left_flanking = true,
-      right_flanking = true,
-      max = state.posMax,
-      isWhiteSpace = state.md.utils.isWhiteSpace;
-
-  // treat beginning of the line as a whitespace
-  lastChar = start > 0 ? state.src.charCodeAt(start - 1) : 0x20;
-
-  if (pos >= max) {
-    can_open = false;
-  }
+  var pos = start, count;
 
   pos += delimLength;
 
   count = pos - start;
 
-  // treat end of the line as a whitespace
-  nextChar = pos < max ? state.src.charCodeAt(pos) : 0x20;
-
-  isLastWhiteSpace = isWhiteSpace(lastChar);
-  isNextWhiteSpace = isWhiteSpace(nextChar);
-
-  if (isNextWhiteSpace) {
-    left_flanking = false;
-  }
-
-  if (isLastWhiteSpace) {
-    right_flanking = false;
-  }
-
-  can_open = left_flanking;
-  can_close = right_flanking;
-
+  // Allow spaces after beginning $ and before ending $.
+  // So can_open and can_close is always true.
   return {
-    can_open: can_open,
-    can_close: can_close,
+    can_open: true,
+    can_close: true,
     delims: count
   };
 }
